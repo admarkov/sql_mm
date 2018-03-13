@@ -20,7 +20,7 @@ SELECT ftype, COUNT(*) from chessboard join chessman on chessman.cid = chessboar
 --меньше двух на доске.
 SELECT ftype from (select ftype, count(*) as amount from chessboard join chessman on chessman.cid = chessboard.cid group by ftype) as cntable where amount > 1
 --10. Вывести цвет фигур, которых на доске больше.
---11. Найдите фигуры, которые стоят на возможном пути движения ладьи (rock) (Любой
+SELECT fcolor from (select fcolor, COUNT(*) as amount from chessboard join chessman on chessman.cid = chessboard.cid group by fcolor) as cntable where amount = (select MAX(amount) from (select fcolor, COUNT(*) as amount from chessboard join chessman on chessman.cid = chessboard.cid group by fcolor) as cntable)--11. Найдите фигуры, которые стоят на возможном пути движения ладьи (rock) (Любой
 --ладьи любого цвета). (Ладья может двигаться по горизонтали или по вертикали
 --относительно своего положения на доске в любом направлении.).
 --12. У каких игроков (цвета) еще остались ВСЕ пешки (pawn)?
