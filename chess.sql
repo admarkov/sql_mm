@@ -18,6 +18,7 @@ SELECT DISTINCT ftype from chessboard join chessman on chessman.cid = chessboard
 SELECT ftype, COUNT(*) from chessboard join chessman on chessman.cid = chessboard.cid where chessman.fcolor = 'black' GROUP BY ftype
 --9. Найдите типы фигур (любого цвета), которых осталось, по крайней мере, не
 --меньше двух на доске.
+SELECT ftype from (select ftype, count(*) as amount from chessboard join chessman on chessman.cid = chessboard.cid group by ftype) as cntable where amount > 1
 --10. Вывести цвет фигур, которых на доске больше.
 --11. Найдите фигуры, которые стоят на возможном пути движения ладьи (rock) (Любой
 --ладьи любого цвета). (Ладья может двигаться по горизонтали или по вертикали
