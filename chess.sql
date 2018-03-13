@@ -25,5 +25,5 @@ SELECT fcolor from (select fcolor, COUNT(*) as amount from chessboard join chess
 --11. Найдите фигуры, которые стоят на возможном пути движения ладьи (rock) (Любой
 --ладьи любого цвета). (Ладья может двигаться по горизонтали или по вертикали
 --относительно своего положения на доске в любом направлении.).
-
+SELECT fcolor, amount, ftype from (select ftype, fcolor, COUNT(*) as amount from chessboard join chessman on chessman.cid = chessboard.cid where ftype='pawn' group by ftype, fcolor) as cntable where amount = 8
 --12. У каких игроков (цвета) еще остались ВСЕ пешки (pawn)?
