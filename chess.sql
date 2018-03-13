@@ -15,6 +15,7 @@ SELECT fcolor, COUNT(*) as amount from chessboard join chessman on chessman.cid 
 --7. Какие фигуры черных имеются на доске? Вывести тип.
 SELECT DISTINCT ftype from chessboard join chessman on chessman.cid = chessboard.cid where chessman.fcolor = 'black'
 --8. Какие фигуры черных имеются на доске? Вывести тип и количество.
+SELECT ftype, COUNT(*) from chessboard join chessman on chessman.cid = chessboard.cid where chessman.fcolor = 'black' GROUP BY ftype
 --9. Найдите типы фигур (любого цвета), которых осталось, по крайней мере, не
 --меньше двух на доске.
 --10. Вывести цвет фигур, которых на доске больше.
