@@ -10,6 +10,7 @@ SELECT cid FROM chessman WHERE ftype = 'pawn' and fcolor = 'white'
 SELECT ftype, fcolor from chessman, chessboard where chessboard.cid = chessman.cid and (ASCII(X) - 65) = (ASCII(Y) - 49)
 --6. Найдите общее количество фигур, оставшихся у каждого игрока. Вывести цвет и
 --количество.
+SELECT fcolor, COUNT(*) as amount from chessman GROUP BY fcolor
 --7. Какие фигуры черных имеются на доске? Вывести тип.
 --8. Какие фигуры черных имеются на доске? Вывести тип и количество.
 --9. Найдите типы фигур (любого цвета), которых осталось, по крайней мере, не
