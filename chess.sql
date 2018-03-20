@@ -53,3 +53,5 @@ select c2.cid from (select ftype, fcolor, x, y from chessboard join chessman ON 
 --17. Сделайте сводную таблицу, показывающую, сколько фигур каждого типа есть у
 --каждого игрока (при помощи функции PIVOT). Столбцы должны соответствовать
 --цветам, а строки – типам фигур.
+CREATE VIEW board as SELECT chessman.cid, ftype, fcolor, x, y from chessboard join chessman on chessboard.cid = chessman.cid
+--SELECT ftype, [white], [black] from board PIVOT( for fcolor in ([white], [black])) as pi
