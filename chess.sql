@@ -28,3 +28,28 @@ SELECT fcolor from (select fcolor, COUNT(*) as amount from chessboard join chess
 
 --12. У каких игроков (цвета) еще остались ВСЕ пешки (pawn)?
 SELECT fcolor, amount, ftype from (select ftype, fcolor, COUNT(*) as amount from chessboard join chessman on chessman.cid = chessboard.cid where ftype='pawn' group by ftype, fcolor) as cntable where amount = 8
+--13. Пусть отношения board1 и board2 представляют собой два последовательных
+--состояние игры (Chessboard). Какие фигуры (cid) изменили свою позицию (за один
+--ход это может быть передвигаемая фигура и возможно еще фигура, которая была
+--“съедена”)?
+--В отношение Chessboard2 надо скопировать все строки отношения Chessboard. Из
+--Chessboard2 надо одну фигуру удалить, а другую фигуру поставить на место
+--удаленной («съесть фигуру»).
+SELECT * INTO chessboard2 from chessboard
+--Задание надо выполнить двумя способами:
+--a) через JOIN
+SELECT chessboard.cid, chessboard.x, chessboard.y from chessboard full join chessboard2 on chessboard.cid = chessboard2.cid where chessboard.x!=chessboard2.x or chessboard.y!=chesboard2.y or chessboard2.cid is null
+--b) через UNION/INTERSECT/EXCEPT
+SELECT * FROM CHESSBOARD EXCEPT SELECT * FROM CHESSBOARD INTERSECT SELECT * FROM CHESSBOARD2
+--14. Вывести id фигуры, если она стоит в «опасной близости» от черного короля?
+--«опасной близостью» будем считать квадрат 5х5 с королем в центре.
+
+--15. Найти фигуру, ближе всех стоящую к белому королю (расстояние считаем по
+--метрике L1 – разница координат по X + разница координат по Y.
+
+--16. Найти фигуры, которые может съесть ладья (Cid ладьи задан). Помните, что
+--«своих» есть нельзя!
+
+--17. Сделайте сводную таблицу, показывающую, сколько фигур каждого типа есть у
+--каждого игрока (при помощи функции PIVOT). Столбцы должны соответствовать
+--цветам, а строки – типам фигур.
