@@ -43,7 +43,7 @@ SELECT chessboard.cid, chessboard.x, chessboard.y from chessboard full join ches
 SELECT * FROM CHESSBOARD EXCEPT SELECT * FROM CHESSBOARD INTERSECT SELECT * FROM CHESSBOARD2
 --14. Вывести id фигуры, если она стоит в «опасной близости» от черного короля?
 --«опасной близостью» будем считать квадрат 5х5 с королем в центре.
-
+select c2.cid from (select ftype, fcolor, x, y from chessboard join chessman ON chessman.cid = chessboard.cid) as c1, (select chessman.cid, x, y from chessboard join chessman ON chessman.cid = chessboard.cid) as c2 where c1.ftype = 'king' and c1.fcolor = 'black' and abs(ASCII(c1.x)-ASCII(c2.x)) <6 and abs(ASCII(c1.y)-ASCII(c2.y)) < 6
 --15. Найти фигуру, ближе всех стоящую к белому королю (расстояние считаем по
 --метрике L1 – разница координат по X + разница координат по Y.
 
