@@ -19,13 +19,21 @@
 --17. Вывести названия товаров, которые продает Ann
 --АНАЛИТИЧЕСКИЕ ЗАПРОСЫ
 --1. Вывести количество продавцов
+select count(*) from Employees
 --2. Сколько продуктов стоят меньше 10$
+select count(*) from Products where Price < 10
 --3. Найти цену самого дорогого продукта
+select top 1 Price from Products ORDER BY Price DESC
 --4. Найти все самые дорогие продукты (с самой большой ценой)
+select top 1 with ties * from Products ORDER BY Price DESC
 --5. Найти количество продуктов, название которых начинается на Metal Plate
+select * from Products where Name like 'Metal Plate%'
 --6. Найти среднюю цену продукта, в названии которых встречается слово silver
+select AVG(Price) from Products where Name like '%silver%'
 --7. Сколько покупателей, которых зовут Alicia?
+select * from Customers where FirstName = 'Alicia'
 --8. Сколько есть уникальных имен покупателей?
+
 --9. У какого количества покупателей определена буква отчества?
 --10. Какая буква отчества самая популярная?
 --11. У какого количества покупателей не определена буква отчества?
