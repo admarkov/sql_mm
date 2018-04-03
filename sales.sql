@@ -56,9 +56,11 @@ select Employees.FirstName + ' ' + Employees.MiddleInitial + ' ' + Employees.Las
 --18. Сколько покупок у каждого покупателя?
 select Customers.CustomerID, count(*) from sales join Customers on sales.CustomerID = Customers.CustomerID group by Customers.CustomerID
 --19. Скольким покупателям продавал товары каждый продавец?
-
+select EmployeeID, count(distinct sales.CustomerID) from Employees join sales on sales.SalesPersonID = EmployeeID group by EmployeeID
 --20. Какова средняя цена каждой продажи во всем продажам?
+select AVG(Price) from sales join Products on sales.ProductID = Products.ProductID
 --21. Какова сумма продаж у каждого продавца?
+select Sales.SalesPersonID, SUM(Price) from sales join Products on sales.ProductID = Products.ProductID group by Sales.SalesPersonID
 --22. Для каждого товара найти мат.ожидание количества в каждой продаже и среднее
 --квадратичное отклонение.
 --23. Вывести информацию о продажах, в котором будут фамилии и имена продавцов,
