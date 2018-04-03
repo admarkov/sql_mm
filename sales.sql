@@ -33,9 +33,11 @@ select AVG(Price) from Products where Name like '%silver%'
 --7. Сколько покупателей, которых зовут Alicia?
 select * from Customers where FirstName = 'Alicia'
 --8. Сколько есть уникальных имен покупателей?
-
+select count(distinct FirstName) from Customers
 --9. У какого количества покупателей определена буква отчества?
+select count(*) from Customers where MiddleInitial is not null
 --10. Какая буква отчества самая популярная?
+select top 1 MiddleInitial from (select MiddleInitial, count(*) as cnt from Customers where MiddleInitial is not null Group by MiddleInitial) as cntable order by cnt desc
 --11. У какого количества покупателей не определена буква отчества?
 --12. У какого количества покупателей совпали имена? Вывести статистику для каждого имени.
 --13. У какого количества покупателей совпали имена и отчества? Вывести статистику для
