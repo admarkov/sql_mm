@@ -39,15 +39,24 @@ select count(*) from Customers where MiddleInitial is not null
 --10. Какая буква отчества самая популярная?
 select top 1 MiddleInitial from (select MiddleInitial, count(*) as cnt from Customers where MiddleInitial is not null Group by MiddleInitial) as cntable order by cnt desc
 --11. У какого количества покупателей не определена буква отчества?
+select count (*) from Customers where MiddleInitial is null
 --12. У какого количества покупателей совпали имена? Вывести статистику для каждого имени.
+select FirstName, count (*) as cnt from Customers group by FirstName
 --13. У какого количества покупателей совпали имена и отчества? Вывести статистику для
 --каждого имени и отчества.
+select FirstName + ' ' + MiddleInitial, count (*) as cnt from Customers group by FirstName + ' ' + MiddleInitial
 --14. Сколько однофамильцев среди продавцов
+select LastName, count (*) as cnt from Employees group by LastName
 --15. Найти количество продаж продавца по имени Ann
+select count(*) from sales join Employees on sales.SalesPersonID = Employees.EmployeeID where Employees.FirstName = 'Ann'
 --16. Вывести количество различных товаров, которые продает Ann
+select count(distinct sales.ProductID) from sales join Employees on sales.SalesPersonID = Employees.EmployeeID where Employees.FirstName = 'Ann'
 --17. Сколько продаж есть у каждого продавца?
+select Employees.FirstName + ' ' + Employees.MiddleInitial + ' ' + Employees.LastName,  count(*) from sales join Employees on sales.SalesPersonID = Employees.EmployeeID group by Employees.FirstName + ' ' + Employees.MiddleInitial + ' ' + Employees.LastName
 --18. Сколько покупок у каждого покупателя?
+select Customers.CustomerID, count(*) from sales join Customers on sales.CustomerID = Customers.CustomerID group by Customers.CustomerID
 --19. Скольким покупателям продавал товары каждый продавец?
+
 --20. Какова средняя цена каждой продажи во всем продажам?
 --21. Какова сумма продаж у каждого продавца?
 --22. Для каждого товара найти мат.ожидание количества в каждой продаже и среднее
